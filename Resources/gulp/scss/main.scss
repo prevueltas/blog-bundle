@@ -1,0 +1,115 @@
+@import '_base/variables';
+@import 'bootstrap';
+@import 'font-awesome';
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
+}
+
+.user-name {
+    float: right;
+    padding: 15px 15px;
+    line-height: 20px;
+    height: 50px;
+    font-weight: 800;
+    color: #ffff00;
+
+    @media (max-width: $screen-sm) {
+        .user-name {
+            display: none;
+        }
+    }
+}
+
+.navbar-nav {
+    display: none;
+
+    @media (max-width: $screen-sm) {
+        .navbar-nav {
+            display: inline;
+        }
+    }
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+    display: none;
+
+    @media (min-width: $screen-sm) {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #f5f5f5;
+        border-right: 1px solid #eee;
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+
+    li {
+        a {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+    }
+
+    .active {
+        a, a:hover, a:focus {
+            color: #fff;
+            background-color: #428bca;
+        }
+    }
+}
+
+/*
+ * Main content
+ */
+
+.main {
+    padding: 20px;
+
+    @media (min-width: $screen-sm) {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+    .page-header {
+        margin-top: 0;
+    }
+}

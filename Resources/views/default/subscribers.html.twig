@@ -1,0 +1,52 @@
+{% extends 'PrhBlogBundle::base.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header">Subscribers</h1>
+
+    {% include "PrhBlogBundle::flash.html.twig" %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Subscribers</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="subscribers-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for subscriber in subscribers %}
+                        <tr>
+                            <td>{{ subscriber.name }}</td>
+                            <td>{{ subscriber.email }}</td>
+                            <td>{{ subscriber.createdAt|date('d/m/Y') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#subscribers-table').DataTable();
+        } );
+    </script>
+{% endblock %}

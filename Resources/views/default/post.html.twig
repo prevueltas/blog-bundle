@@ -1,0 +1,142 @@
+{% extends 'PrhBlogBundle::base.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header">{% if post.id is defined %}Update the{% else %}Create a new{% endif %} post</h1>
+
+    {% include "PrhBlogBundle::flash.html.twig" %}
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Post form</h3>
+        </div>
+
+        <div class="panel-body">
+            {{ form_start(form, {'attr': { 'class': '', 'role': 'form' } } ) }}
+
+            <div class="row">
+                <div class="text-danger">
+                    {{ form_errors(form) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="post_title">Title</label>
+                        {{ form_widget(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Title' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.title) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="post_url">URL</label>
+                        {{ form_widget(form.url, { 'attr': { 'class': 'form-control', 'placeholder': 'i-am-a-valid-url-without-special-chars-and-dashes-instead-of-spaces' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.url) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="post_date">Date</label>
+                        {{ form_widget(form.date, { 'attr': { 'class': 'form-control date-picker', 'placeholder': '11/07/2015' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.date) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="post_featured">Featured</label>
+                        {{ form_widget(form.featured, { 'attr': { 'class': 'form-control' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.featured) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="post_categories">Categories</label>
+                        {{ form_widget(form.categories, { 'attr': { 'class': 'form-control' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.categories) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="post_state">Status</label>
+                        {{ form_widget(form.state, { 'attr': { 'class': 'form-control' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.state) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="post_note">Note (private)</label>
+                        {{ form_widget(form.note, { 'attr': { 'class': 'form-control'} } ) }}
+                        <div class="text-danger">{{ form_errors(form.note) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="post_metaDescription">Meta description (SEO)</label>
+                        {{ form_widget(form.metaDescription, { 'attr': { 'class': 'form-control', 'placeholder': 'Content summary containing the keywords'} } ) }}
+                        <div class="text-danger">{{ form_errors(form.metaDescription) }}</div>
+                        <a href="https://support.google.com/webmasters/answer/35624?rd=1" target="_blank">Help</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="post_content">Content</label>
+                        {{ form_widget(form.content, { 'attr': { 'class': 'form-control'} } ) }}
+                        <div class="text-danger">{{ form_errors(form.content) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        {% if preview is defined and post is defined %}<a class="btn btn-info" href="{{ path('app_post', {'url': post.url}) }}" target="_blank" role="button">Preview</a>{% endif %}
+                        {% if post.id is defined %}<a class="btn btn-warning pull-right" onclick="if (confirm('Are you sure?')) window.location.href='{{ path('prh_blog_post_delete', {'id': post.id}) }}'" role="button">Delete</a>{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        function sendFile(file, editor) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "{{ path('prh_image_save') }}",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(url) {
+                    editor.summernote('insertImage', url);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('#prh_blog_posttype_content').summernote({
+                width: 750,
+                height: 750,
+                codeview: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'hr']],
+                    ['view', ['fullscreen', 'codeview']],
+                    ['help', ['help']]
+                ],
+                onImageUpload: function(files) {
+                    sendFile(files[0], $(this));
+                }
+            });
+        });
+    </script>
+{% endblock %}

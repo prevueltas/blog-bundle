@@ -1,0 +1,11 @@
+{
+  "name": "prh-blog-admin",
+  "version": "1.0.0",
+  "author": "Pedro Revueltas <pedro@pedrorevueltas.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.*",
+    "datatables": "1.10.*",
+    "summernote": "0.6.*"
+  }
+}

@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+vendor
+composer.lock
+.sass-cache
+bower_components
+node_modules
+npm-debug.log

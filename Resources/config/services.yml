@@ -1,0 +1,42 @@
+services:
+
+    # REPOSITORIES
+
+    prh.blog.repository.post:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - Prh\BlogBundle\Entity\Post
+
+    prh.blog.repository.category:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - Prh\BlogBundle\Entity\Category
+
+    prh.blog.repository.subscriber:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - Prh\BlogBundle\Entity\Subscriber
+
+    # SERVICES
+
+    prh.blog.service.post:
+        class: Prh\BlogBundle\Service\PostService
+        arguments: [@form.factory, @router, @prh.blog.repository.post]
+
+    prh.blog.service.category:
+        class: Prh\BlogBundle\Service\CategoryService
+        arguments: [@form.factory, @router, @prh.blog.repository.category]
+
+    prh.blog.service.subscriber:
+        class: Prh\BlogBundle\Service\SubscriberService
+        arguments: [@prh.blog.repository.subscriber]
+
+    prh.blog.service.image:
+        class: Prh\BlogBundle\Service\ImageService
+        arguments: ["%prh_blog%"]

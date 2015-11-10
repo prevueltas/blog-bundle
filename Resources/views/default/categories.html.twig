@@ -1,0 +1,55 @@
+{% extends 'PrhBlogBundle::base.html.twig' %}
+
+{% block content %}
+    <h1 class="page-header">Categories</h1>
+
+    {% include "PrhBlogBundle::flash.html.twig" %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-primary" href="{{ path('prh_blog_category_new') }}" role="button">New</a>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Categories</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped" id="categories-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td><a class="btn btn-primary" href="{{ path('prh_blog_category_edit', {'id': category.id}) }}" role="button">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#categories-table').DataTable();
+        } );
+    </script>
+{% endblock %}
