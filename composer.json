@@ -11,8 +11,9 @@
   "license": "MIT",
   "require": {
     "php": ">=5.5",
+    "symfony/symfony": "^2.7",
     "doctrine/orm": "~2.2,>=2.2.3,<2.5",
-    "symfony/symfony": "^2.7"
+    "eventviva/php-image-resize": "^1.5"
   },
   "require-dev": {
     "phpunit/phpunit": "4.5.*",
