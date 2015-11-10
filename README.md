@@ -1,6 +1,6 @@
 BLOG BUNDLE
 ============
-Symfony Bundle which provides a simple admin panel and a set of services that can be consumed by a frontend bundle (i.e. AppBundle).
+This is a Symfony Bundle which provides a simple admin panel and a set of services that can be consumed by a frontend bundle (i.e. AppBundle).
 
 Installation
 ------------
@@ -9,7 +9,7 @@ Installation
 composer require prevueltas/blog-bundle
 ```
 
-2) Update your database using your preferred method (DoctrineMigrations, php app/console doctrine:schema:update --force`, etc.)
+2) Update your database using your preferred method (DoctrineMigrations, `php app/console doctrine:schema:update --force`, etc.)
 
 3) Update your security settings to restrict the access to the path: ^/admin
 
