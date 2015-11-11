@@ -9,10 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
  * Post entity.
  *
  * @ORM\Entity(repositoryClass="Prh\BlogBundle\Entity\PostRepository")
- * @ORM\Table(name="post")
+ * @ORM\Table
+ * @ORM\HasLifecycleCallbacks
  */
 class Post
 {
+    use TimestampableTrait;
+
     const STATE_DRAFT = 0;
     const STATE_PUBLISHED = 1;
 
@@ -63,7 +66,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="meta_description", type="text")
+     * @ORM\Column(name="meta_description", type="text", nullable=true)
      */
     private $metaDescription;
 

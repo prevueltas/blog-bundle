@@ -9,10 +9,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Subscriber entity.
  *
  * @ORM\Entity(repositoryClass="Prh\BlogBundle\Entity\SubscriberRepository")
- * @ORM\Table(name="subscriber")
+ * @ORM\Table
+ * @ORM\HasLifecycleCallbacks
  */
 class Subscriber
 {
+    use TimestampableTrait;
+
+    const STATE_UNSUBSCRIBED = 0;
+    const STATE_SUBSCRIBED = 1;
+
     /**
      * @var integer
      *
@@ -25,7 +31,7 @@ class Subscriber
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(min=2)
      */
     private $name;
@@ -33,17 +39,17 @@ class Subscriber
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255)
      * @Assert\Email
      */
     private $email;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     * @ORM\Column(name="state", type="smallint")
      */
-    private $createdAt;
+    private $state;
 
     /**
      * Constructor
@@ -110,18 +116,18 @@ class Subscriber
     }
 
     /**
-     * @return \DateTime
+     * @return int
      */
-    public function getCreatedAt()
+    public function getState()
     {
-        return $this->createdAt;
+        return $this->state;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param int $state
      */
-    public function setCreatedAt($createdAt)
+    public function setState($state)
     {
-        $this->createdAt = $createdAt;
+        $this->state = $state;
     }
 }

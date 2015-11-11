@@ -3,7 +3,7 @@
 namespace Prh\BlogBundle\Entity;
 
 /**
- * Class BaseRepositoryTrait.
+ * Trait BaseRepositoryTrait.
  */
 trait BaseRepositoryTrait
 {

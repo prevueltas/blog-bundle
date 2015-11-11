@@ -9,10 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
  * Category entity.
  *
  * @ORM\Entity(repositoryClass="Prh\BlogBundle\Entity\CategoryRepository")
- * @ORM\Table(name="category")
+ * @ORM\Table
+ * @ORM\HasLifecycleCallbacks
  */
 class Category
 {
+    use TimestampableTrait;
+
     /**
      * @var integer
      *
@@ -53,7 +56,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="meta_description", type="text")
+     * @ORM\Column(name="meta_description", type="text", nullable=true)
      */
     private $metaDescription;
 
