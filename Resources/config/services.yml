@@ -35,7 +35,7 @@ services:
 
     prh.blog.service.subscriber:
         class: Prh\BlogBundle\Service\SubscriberService
-        arguments: [@prh.blog.repository.subscriber]
+        arguments: [@form.factory, @router, @prh.blog.repository.subscriber]
 
     prh.blog.service.image:
         class: Prh\BlogBundle\Service\ImageService

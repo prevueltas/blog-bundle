@@ -198,7 +198,7 @@ class PostService
      * @param Request $request
      * @param Post $post
      *
-     * @return null|Post
+     * @return Post|null
      */
     public function processForm(Request $request, Post $post = null)
     {

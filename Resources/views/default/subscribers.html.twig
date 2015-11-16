@@ -6,6 +6,12 @@
     {% include "PrhBlogBundle::flash.html.twig" %}
 
     <div class="panel panel-default">
+        <div class="panel-body">
+            <a class="btn btn-primary" href="{{ path('prh_blog_subscriber_new') }}" role="button">New</a>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Subscribers</h3>
         </div>
@@ -17,7 +23,9 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>State</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +33,9 @@
                         <tr>
                             <td>{{ subscriber.name }}</td>
                             <td>{{ subscriber.email }}</td>
+                            <td>{% if subscriber.state == 1 %}Subscribed{% endif %}</td>
                             <td>{{ subscriber.createdAt|date('d/m/Y') }}</td>
+                            <td><a class="btn btn-primary" href="{{ path('prh_blog_subscriber_edit', {'id': subscriber.id}) }}" role="button">Edit</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -33,7 +43,9 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>State</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                 </table>

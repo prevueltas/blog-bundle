@@ -23,28 +23,28 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="post_title">Name</label>
+                        <label for="category_name">Name</label>
                         {{ form_widget(form.name, { 'attr': { 'class': 'form-control' } } ) }}
                         <div class="text-danger">{{ form_errors(form.name) }}</div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="post_url">URL</label>
+                        <label for="category_url">URL</label>
                         {{ form_widget(form.url, { 'attr': { 'class': 'form-control', 'placeholder': 'i-am-a-valid-url-without-special-chars-and-dashes-instead-of-spaces' } } ) }}
                         <div class="text-danger">{{ form_errors(form.url) }}</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="post_shortDescription">Short description</label>
+                        <label for="category_shortDescription">Short description</label>
                         {{ form_widget(form.shortDescription, { 'attr': { 'class': 'form-control'} } ) }}
                         <div class="text-danger">{{ form_errors(form.shortDescription) }}</div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="post_metaDescription">Meta description (SEO)</label>
+                        <label for="category_metaDescription">Meta description (SEO)</label>
                         {{ form_widget(form.metaDescription, { 'attr': { 'class': 'form-control', 'placeholder': 'Content summary containing the keywords'} } ) }}
                         <div class="text-danger">{{ form_errors(form.metaDescription) }}</div>
                         <a href="https://support.google.com/webmasters/answer/35624?rd=1" target="_blank">Help</a>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="post_content">Description</label>
+                        <label for="category_content">Description</label>
                         {{ form_widget(form.description, { 'attr': { 'class': 'form-control', 'placeholder': 'Descripción'} } ) }}
                         <div class="text-danger">{{ form_errors(form.description) }}</div>
                     </div>

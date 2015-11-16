@@ -1,14 +1,14 @@
 {% extends 'PrhBlogBundle::base.html.twig' %}
 
 {% block content %}
-    <h1 class="page-header">{% if category.id is defined %}Update the{% else %}Create a new{% endif %} category</h1>
+    <h1 class="page-header">{% if subscriber.id is defined %}Update the{% else %}Create a new{% endif %} subscriber</h1>
 
     {% include "PrhBlogBundle::flash.html.twig" %}
 
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <h3 class="panel-title">Category form</h3>
+            <h3 class="panel-title">Subscriber form</h3>
         </div>
 
         <div class="panel-body">
@@ -21,46 +21,31 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="post_title">Name</label>
+                        <label for="subscriber_name">Name</label>
                         {{ form_widget(form.name, { 'attr': { 'class': 'form-control' } } ) }}
                         <div class="text-danger">{{ form_errors(form.name) }}</div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="post_url">URL</label>
-                        {{ form_widget(form.url, { 'attr': { 'class': 'form-control', 'placeholder': 'i-am-a-valid-url-without-special-chars-and-dashes-instead-of-spaces' } } ) }}
-                        <div class="text-danger">{{ form_errors(form.url) }}</div>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="post_shortDescription">Short description</label>
-                        {{ form_widget(form.shortDescription, { 'attr': { 'class': 'form-control'} } ) }}
-                        <div class="text-danger">{{ form_errors(form.shortDescription) }}</div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="post_metaDescription">Meta description (SEO)</label>
-                        {{ form_widget(form.metaDescription, { 'attr': { 'class': 'form-control', 'placeholder': 'Content summary containing the keywords'} } ) }}
-                        <div class="text-danger">{{ form_errors(form.metaDescription) }}</div>
-                        <a href="https://support.google.com/webmasters/answer/35624?rd=1" target="_blank">Help</a>
+                        <label for="subscriber_state">State</label>
+                        {{ form_widget(form.state, { 'attr': { 'class': 'form-control' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.state) }}</div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="post_content">Description</label>
-                        {{ form_widget(form.description, { 'attr': { 'class': 'form-control', 'placeholder': 'Descripción'} } ) }}
-                        <div class="text-danger">{{ form_errors(form.description) }}</div>
+                        <label for="subscriber_email">Email</label>
+                        {{ form_widget(form.email, { 'attr': { 'class': 'form-control' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.email) }}</div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        {% if category.id is defined %}<a class="btn btn-warning pull-right" onclick="if (confirm('Are you sure?')) window.location.href='{{ path('prh_blog_category_delete', {'id': category.id}) }}'" role="button">Delete</a>{% endif %}
+                        {% if subscriber.id is defined %}<a class="btn btn-warning pull-right" onclick="if (confirm('Are you sure?')) window.location.href='{{ path('prh_blog_subscriber_delete', {'id': subscriber.id}) }}'" role="button">Delete</a>{% endif %}
                     </div>
                 </div>
             </div>
@@ -68,46 +53,4 @@
 
         {{ form_end(form) }}
     </div>
-{% endblock %}
-
-{% block js %}
-    <script type="text/javascript">
-        function sendFile(file, editor) {
-            data = new FormData();
-            data.append("file", file);
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: "{{ path('prh_image_save') }}",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(url) {
-                    editor.summernote('insertImage', url);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            $('#prh_blog_categorytype_description').summernote({
-                width: 750,
-                height: 250,
-                codeview: true,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'hr']],
-                    ['view', ['fullscreen', 'codeview']],
-                    ['help', ['help']]
-                ],
-                onImageUpload: function(files) {
-                    sendFile(files[0], $(this));
-                }
-            });
-        });
-    </script>
 {% endblock %}

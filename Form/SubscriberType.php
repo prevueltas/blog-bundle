@@ -19,6 +19,12 @@ class SubscriberType extends AbstractType
         $builder
             ->add('name')
             ->add('email', 'email')
+            ->add('state', 'choice', [
+                'choices' => [
+                    '1' => 'Subscribed',
+                    '0' => 'Unsubscribed'
+                ]
+            ])
         ;
     }
 
