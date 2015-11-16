@@ -24,27 +24,27 @@
                             <th>Title</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </thead>
+                    <tbody>
+                    {% for post in posts %}
+                        <tr>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.date|date('d/m/Y') }}</td>
+                            <td>{% if post.state == 1 %}Published{% endif %}</td>
+                            <td><a class="btn btn-primary" href="{{ path('prh_blog_post_edit', {'id': post.id}) }}" role="button">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
                     <tfoot>
                         <tr>
                             <th>Title</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th></th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
-                    <tbody>
-                    {% for post in posts %}
-                        <tr>
-                            <td>{{ post.title }}</td>
-                            <td>{{ post.date|date('d M Y') }}</td>
-                            <td>{% if post.state == 1 %}Publicado{% endif %}</td>
-                            <td><a class="btn btn-primary" href="{{ path('prh_blog_post_edit', {'id': post.id}) }}" role="button">Edit</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
                 </table>
             </div>
         </div>

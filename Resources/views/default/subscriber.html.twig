@@ -1,14 +1,14 @@
 {% extends 'PrhBlogBundle::base.html.twig' %}
 
 {% block content %}
-    <h1 class="page-header">{% if post.id is defined %}Update the{% else %}Create a new{% endif %} post</h1>
+    <h1 class="page-header">{% if category.id is defined %}Update the{% else %}Create a new{% endif %} category</h1>
 
     {% include "PrhBlogBundle::flash.html.twig" %}
 
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <h3 class="panel-title">Post form</h3>
+            <h3 class="panel-title">Category form</h3>
         </div>
 
         <div class="panel-body">
@@ -23,9 +23,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="post_title">Title</label>
-                        {{ form_widget(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Title' } } ) }}
-                        <div class="text-danger">{{ form_errors(form.title) }}</div>
+                        <label for="post_title">Name</label>
+                        {{ form_widget(form.name, { 'attr': { 'class': 'form-control' } } ) }}
+                        <div class="text-danger">{{ form_errors(form.name) }}</div>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -35,42 +35,14 @@
                         <div class="text-danger">{{ form_errors(form.url) }}</div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="post_date">Date</label>
-                        {{ form_widget(form.date, { 'attr': { 'class': 'form-control date-picker', 'placeholder': '11/07/2015' } } ) }}
-                        <div class="text-danger">{{ form_errors(form.date) }}</div>
+                        <label for="post_shortDescription">Short description</label>
+                        {{ form_widget(form.shortDescription, { 'attr': { 'class': 'form-control'} } ) }}
+                        <div class="text-danger">{{ form_errors(form.shortDescription) }}</div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="post_featured">Featured</label>
-                        {{ form_widget(form.featured, { 'attr': { 'class': 'form-control' } } ) }}
-                        <div class="text-danger">{{ form_errors(form.featured) }}</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="post_categories">Categories</label>
-                        {{ form_widget(form.categories, { 'attr': { 'class': 'form-control' } } ) }}
-                        <div class="text-danger">{{ form_errors(form.categories) }}</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="post_state">State</label>
-                        {{ form_widget(form.state, { 'attr': { 'class': 'form-control' } } ) }}
-                        <div class="text-danger">{{ form_errors(form.state) }}</div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="post_note">Note (private)</label>
-                        {{ form_widget(form.note, { 'attr': { 'class': 'form-control'} } ) }}
-                        <div class="text-danger">{{ form_errors(form.note) }}</div>
-                    </div>
-                </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="post_metaDescription">Meta description (SEO)</label>
                         {{ form_widget(form.metaDescription, { 'attr': { 'class': 'form-control', 'placeholder': 'Content summary containing the keywords'} } ) }}
@@ -80,16 +52,15 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="post_content">Content</label>
-                        {{ form_widget(form.content, { 'attr': { 'class': 'form-control'} } ) }}
-                        <div class="text-danger">{{ form_errors(form.content) }}</div>
+                        <label for="post_content">Description</label>
+                        {{ form_widget(form.description, { 'attr': { 'class': 'form-control', 'placeholder': 'Descripción'} } ) }}
+                        <div class="text-danger">{{ form_errors(form.description) }}</div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        {% if preview is defined and post is defined %}<a class="btn btn-info" href="{{ path('app_post', {'url': post.url}) }}" target="_blank" role="button">Preview</a>{% endif %}
-                        {% if post.id is defined %}<a class="btn btn-warning pull-right" onclick="if (confirm('Are you sure?')) window.location.href='{{ path('prh_blog_post_delete', {'id': post.id}) }}'" role="button">Delete</a>{% endif %}
+                        {% if category.id is defined %}<a class="btn btn-warning pull-right" onclick="if (confirm('Are you sure?')) window.location.href='{{ path('prh_blog_category_delete', {'id': category.id}) }}'" role="button">Delete</a>{% endif %}
                     </div>
                 </div>
             </div>
@@ -118,9 +89,9 @@
         }
 
         $(document).ready(function() {
-            $('#prh_blog_posttype_content').summernote({
+            $('#prh_blog_categorytype_description').summernote({
                 width: 750,
-                height: 750,
+                height: 250,
                 codeview: true,
                 toolbar: [
                     ['style', ['style']],
