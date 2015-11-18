@@ -21,7 +21,6 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ path('prh_blog_post_list') }}">Posts</a></li>
                         <li><a href="{{ path('prh_blog_category_list') }}">Categories</a></li>
-                        <li><a href="{{ path('prh_blog_subscriber_list') }}">Subscribers</a></li>
                     </ul>
                     <span class="user-name">{{ app.user.username }}</span>
                 </div>
@@ -32,7 +31,6 @@
                 <ul class="nav nav-sidebar">
                     <li {% if app.request.get('_route') == 'prh_blog_post_list' %}class="active"{% endif %}><a href="{{ path('prh_blog_post_list') }}">Posts {% if app.request.get('_route') == 'prh_blog_post_list' %}<span class="sr-only">(current)</span>{% endif %}</a></li>
                     <li {% if app.request.get('_route') == 'prh_blog_category_list' %}class="active"{% endif %}><a href="{{ path('prh_blog_category_list') }}">Categories {% if app.request.get('_route') == 'prh_blog_category_list' %}<span class="sr-only">(current)</span>{% endif %}</a></li>
-                    <li {% if app.request.get('_route') == 'prh_blog_subscriber_list' %}class="active"{% endif %}><a href="{{ path('prh_blog_subscriber_list') }}">Subscribers {% if app.request.get('_route') == 'prh_blog_subscriber_list' %}<span class="sr-only">(current)</span>{% endif %}</a></li>
                 </ul>
                 {{ include ('backend/mainmenu.html.twig', ignore_missing = true) }}
             </div>
