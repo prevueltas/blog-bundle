@@ -182,6 +182,7 @@ class Post
     public function getExcerpt()
     {
         $doc = new \DOMDocument();
+        libxml_use_internal_errors(true);
         $doc->loadHTML('<?xml encoding="UTF-8">' . $this->getContent());
 
         $paragraphs = $doc->getElementsByTagName('p');
@@ -206,6 +207,7 @@ class Post
     public function getFeaturedImageUrl()
     {
         $doc = new \DOMDocument();
+        libxml_use_internal_errors(true);
         $doc->loadHTML('<?xml encoding="UTF-8">' . $this->getContent());
 
         $images = $doc->getElementsByTagName('img');
